@@ -4,10 +4,12 @@ var should = require('should');
 require('log-driver')({level : false});
 var module = require('../../lib/env');
 
-describe ('building the environment', function () {
-  it('should fail without the repo token', function () {
-    module.processEnv = {};
-    module.buildEnv.bind(undefined).should.throw();
+describe ('Environment requirements', function () {
+  it('should pass with a repo token', function () {
+    module.processEnv = {
+      COVERALLS_REPO_TOKEN: 'OK'
+    };
+    module.buildEnv.bind(undefined).should.not.throw();
   });
 });
 
