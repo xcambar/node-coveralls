@@ -11,5 +11,9 @@ describe ('Environment requirements', function () {
     };
     module.buildEnv.bind(undefined).should.not.throw();
   });
+  it('should fail with neither a repo token nor a sevice+job info', function () {
+    module.processEnv = {};
+    module.buildEnv.bind(undefined).should.throw();
+  });
 });
 
