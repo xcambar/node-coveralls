@@ -31,9 +31,5 @@ describe ('building the environment', function () {
       delete require.cache[require('path').resolve('../../lib/env')];
     });
   });
-
 });
 
-describe('should provide the good configuration', function () {
-
-});
