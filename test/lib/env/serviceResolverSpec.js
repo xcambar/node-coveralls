@@ -6,8 +6,11 @@ var should = require('should'),
 require('log-driver')({level : false});
 
 describe('Determining the right service', function () {
+  it('should detect a local run', function () {
+    serviceResolver.resolveServiceName({}).should.equal('local');
+  });
   it('should throw for an undetermined service', function () {
-    serviceResolver.resolveServiceName.bind(undefined, undefined).should.throw();
+    serviceResolver.resolveServiceName.bind(undefined, {CI: true}).should.throw();
   });
   it('should return the TRAVIS value when in a Travis.ci environment', function () {
     serviceResolver.resolveServiceName({CI: true, TRAVIS: true}).should.equal(serviceResolver.services.TRAVIS);
