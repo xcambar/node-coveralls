@@ -1,5 +1,6 @@
 language: node_js
 node_js:
   - 0.8
+script: "npm run-script coveralls"
 env:
   secure: ! '155hezbwPPuKZXBn1mf01VDSxtkdfXDRhufb2yHaE4Vy6uF8LMlzM1EOaIQcSmLmvLG90b6ATRYQXdhFR/qJl4e6CNe2lU+MKMY8b7QTbA5F4nJ5g/kNwZzrN8CSTDHkKAobu3ekym/BT3Bis+ApM/KqPDkv9ABNSBfBdUskp9s='
