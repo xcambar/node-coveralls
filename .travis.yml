@@ -3,4 +3,4 @@ node_js:
   - 0.8
 script: "npm run-script coveralls"
 env:
-  secure: "kVI7uTW4odjzzonQk3AJMyquKvn3QUI8Pf86iCqkPc/mq26ioR854ty4QBIK\nFbI8ZZzGHs9WYjGRIcX9Al/rN27fM0sgNSBjxtEvPf6dCnAgUEnginzi5UXB\nWG4Cxqe3f7zhitTAiHqeQMpGdyu3biXpE1PIipzjdDm10hOJ958="
+  - secure: ! "kVI7uTW4odjzzonQk3AJMyquKvn3QUI8Pf86iCqkPc/mq26ioR854ty4QBIK\nFbI8ZZzGHs9WYjGRIcX9Al/rN27fM0sgNSBjxtEvPf6dCnAgUEnginzi5UXB\nWG4Cxqe3f7zhitTAiHqeQMpGdyu3biXpE1PIipzjdDm10hOJ958="
