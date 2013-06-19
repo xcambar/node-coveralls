@@ -1,28 +1,62 @@
-> WIP: Refactoring in progress to handle more than Travis-ci
 
 #node-coveralls
 [ ![Codeship Status for xcambar/node-coveralls](https://www.codeship.io/projects/68292880-aff6-0130-8c0b-7a97a098c4e6/status?branch=master) ](https://www.codeship.io/projects/4043)
 [![Coverage status](https://coveralls.io/repos/xcambar/node-coveralls/badge.png?branch=master)]
 
-[Coveralls.io](https://coveralls.io/) support for node.js.  Get the great coverage reporting of coveralls.io and add a cool coverage button ( like this: ![](https://s3.amazonaws.com/assets.coveralls.io/badges/coveralls_94.png) ) to your README.
+[Coveralls.io](https://coveralls.io/) support for node.js.  Get the great coverage reporting of coveralls.io and add a cool coverage button to your README.
 
-Installation: Add the latest version of `coveralls` to your package.json:
+# Usage
+
+* Add the latest version of `coveralls` to your package.json:
 ```
 npm install coveralls --save
 ```
+* Instrument your code with [Istanbul](http://gotwarlost.github.io/istanbul/),
+[JSCover](http://tntim96.github.io/JSCover/), [node-jscoverage](https://github.com/visionmedia/node-jscoverage)
+or any tool of your choosing
+* Run your test suites against the instrumented files, with [Istanbul](http://gotwarlost.github.io/istanbul/),
+the [Mocha LCOV Reporter](https://github.com/StevenLooman/mocha-lcov-reporter), or, once again, the tool of your choosing
+* Run `\`npm bin\`/coveralls.js < /path/to/your/lcov\_report.info`
 
-This script ( `bin/coveralls.js` ) can take standard input from any tool that emits the lcov data format (including [mocha](http://visionmedia.github.com/mocha/)'s [LCov reporter](https://npmjs.org/package/mocha-lcov-reporter)) and send it to coveralls.io to report your code coverage there.
+> [coveralls.io](http://coveralls.io) require the presence of an environment variable called `COVERALLS\_REPO\_TOKEN`,
+whic contains the secret token to post your coverage data. Make sure it is available in your Ci environment,
+or the whole bild will fail (`node-coveralls` will stop with a non-zero return code).
 
-Instrumenting your app for coverage is probably harder than it needs to be (read [here](http://www.seejohncode.com/2012/03/13/setting-up-mocha-jscoverage/) or [here](http://tjholowaychuk.com/post/18175682663/mocha-test-coverage)), but that's also a necessary step.
+# Setup example
 
-Once your app is instrumented for coverage, and building, you just need to pipe the lcov output to `./node_modules/coveralls/bin/coveralls.js`.
+In this repo, I used Istanbul and Mocha, and wrapped them all in the following `npm` scripts:
 
-In mocha, if you've got your code instrumented for coverage, the command for a travis build would look something like this:
-```console
-YOURPACKAGE_COVERAGE=1 ./node_modules/.bin/mocha test -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
+```
+"scripts": {
+  "test": "node ./test/runner.js",
+  "coverage": "`npm bin`/istanbul cover ./test/runner.js",
+  "coveralls": "npm run-script coverage && node bin/coveralls.js < coverage/lcov.info"
+}
 ```
 
-If you're running locally, you must have a `.coveralls.yml` file, as documented in their documentation, with your `repo_token` in it; or, you must provide a `COVERALLS_REPO_TOKEN` environment-variable on the command-line.
+The Ci environments they run into execute the task `coveralls` to send the data once the build is finished.
 
-Check out an example [Makefile](https://github.com/cainus/urlgrey/blob/master/Makefile) from one of my projects for an example, especially the test-coveralls build target.  Note: Travis runs `npm test`, so whatever target you create in your Makefile must be the target that `npm test` runs (This is set in package.json's 'scripts' property).
+## Supported CIs
+
+Currently, `node-coveralls` can send data from 3 CI environments:
+
+* [Travis](http://travis-ci.org)
+* [Codeship.io](htp://codeship.io)
+* local (Run from your dev machine)
+
+The two first offer a great level of integration, the third os yet to be polished, though the major info is available.
+
+### More CIs ?
+
+Feel free to pull-request the integration of another CI, or simply ask, it may be just enough to see it implemented :wink:.
+
+# Roadmap
+
+* More CIs
+* Polish
+* Enhnce code coverage (of course!)
+
+# Licence
+
+MIT
 
