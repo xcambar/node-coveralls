@@ -1,4 +1,3 @@
-
 #node-coveralls
 [ ![Codeship Status for xcambar/node-coveralls](https://www.codeship.io/projects/68292880-aff6-0130-8c0b-7a97a098c4e6/status?branch=master) ](https://www.codeship.io/projects/4043)
 [![Coverage status](https://coveralls.io/repos/xcambar/node-coveralls/badge.png?branch=master)]
@@ -41,7 +40,7 @@ The Ci environments they run into execute the task `coveralls` to send the data 
 Currently, `node-coveralls` can send data from 3 CI environments:
 
 * [Travis](http://travis-ci.org)
-* [Codeship.io](htp://codeship.io)
+* [Codeship.io](http://codeship.io)
 * local (Run from your dev machine)
 
 The two first offer a great level of integration, the third os yet to be polished, though the major info is available.
