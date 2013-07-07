@@ -1,11 +1,11 @@
 {
-  "name": "coveralls",
-  "description": "takes json-cov output into stdin and POSTs to coveralls.io",
+  "name": "coveralls.io",
+  "description": "Posts your coverage reports to coveralls.io. Optimized for TravisCI, Codeship.io and local builds",
   "keywords": [
     "coverage",
     "coveralls"
   ],
-  "version": "2.0.12",
+  "version": "2.1.0",
   "bugs": {
     "url": "https://github.com/cainus/node-coveralls/issues"
   },
